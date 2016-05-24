@@ -8,13 +8,16 @@ var buildProduction = utilities.env.production;
 var del = require('del');
 var jshint = require('gulp-jshint');
 var browserSync = require('browser-sync').create();
+var sass = require('gulp-sass');
+var sourcemaps = require('gulp-sourcemaps');
 var lib = require('bower-files')({
   "overrides":{
     "bootstrap" : {
       "main": [
         "less/bootstrap.less",
         "dist/css/bootstrap.css",
-        "dist/js/bootstrap.js"
+        "dist/js/bootstrap.js",
+        "dist/fonts/*"
       ]
     }
   }
@@ -52,6 +55,7 @@ gulp.task("build", ['clean'], function(){
     gulp.start('jsBrowserify');
   }
     gulp.start('bower');
+    gulp.start('cssBuild');
 });
 
 gulp.task('jshint', function(){
@@ -73,7 +77,12 @@ gulp.task('bowerCSS', function () {
     .pipe(gulp.dest('./build/css'));
 });
 
-gulp.task('bower', ['bowerJS', 'bowerCSS']);
+gulp.task('bowerFont', function () {
+  return gulp.src(lib.ext(['eot', 'ttf', 'svg', 'woff', 'woff2']).files)
+    .pipe(gulp.dest('./build/fonts'));
+});
+
+gulp.task('bower', ['bowerJS', 'bowerCSS', 'bowerFont']);
 
 gulp.task('serve', function() {
   browserSync.init({
@@ -86,8 +95,7 @@ gulp.task('serve', function() {
   gulp.watch(['js/*.js'], ['jsBuild']);
   gulp.watch(['bower.json'], ['bowerBuild']);
   gulp.watch(['*.html'], ['htmlBuild']);
-  gulp.watch(['css/*.css'], ['cssBuild']);
-
+  gulp.watch(["scss/*.scss"], ['cssBuild']);
 });
 
 gulp.task('jsBuild', ['jsBrowserify', 'jshint'], function(){
@@ -103,5 +111,10 @@ gulp.task('htmlBuild', function() {
 });
 
 gulp.task('cssBuild', function() {
-  browserSync.reload();
+  return gulp.src('scss/*.scss')
+    .pipe(sourcemaps.init())
+    .pipe(sass())
+    .pipe(sourcemaps.write())
+    .pipe(gulp.dest('./build/css'))
+    .pipe(browserSync.stream());
 });

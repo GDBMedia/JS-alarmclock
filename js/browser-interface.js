@@ -37,13 +37,19 @@ $(document).ready(function(){
         aud.play();
       } }, 1000);
   });
-});
 
-$('#cancel').click(function(){
-  aud.stop();
-  $('#alarm').reset().slideDown(1000);
-});
+  $('#cancel').click(function(e){
+    aud.stop();
+    e.preventDefault();
+    $("#group").hide();
+    $("#wakeup").text("");
+    $('#pic').hide();
+    $('#alarm')[0].reset();
+    $('#alarm').slideDown(1000);
 
+
+  });
+});
 
 function displayTime() {
     var time = moment().format('dddd MMMM Do, YYYY h:mm:ss a');

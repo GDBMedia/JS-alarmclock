@@ -28,3 +28,20 @@ img {
 .myhidden{
   display: none;
 }
+
+$gray : #d3d3d3;
+$green : #75B975;
+$bordercolor : #333;
+
+.container {
+  border-radius: 2em;
+  background: $gray;
+  border: 3px solid $bordercolor;
+  padding: 40px 80px;
+  .btn-primary {
+    font-weight: bold;
+    text-align: center;
+    background: $green;
+    color: white;
+  }
+}
