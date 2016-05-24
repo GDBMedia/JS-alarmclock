@@ -1,0 +1,20 @@
+form{
+  width: 75%;
+  margin: auto;
+}
+.jumbotron{
+  text-align: center;
+}
+
+.photo {
+  display: block;
+  margin: auto;
+}
+
+img {
+  display: block;
+  margin: auto;
+}
+.myhidden{
+  display: none;
+}
