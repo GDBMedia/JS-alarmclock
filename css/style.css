@@ -6,12 +6,22 @@ form{
   text-align: center;
 }
 
+.btn {
+  margin:auto;
+  display: block;
+}
+
 .photo {
   display: block;
   margin: auto;
 }
 
 img {
+  display: block;
+  margin: auto;
+}
+.btn-group{
+  text-align: center;
   display: block;
   margin: auto;
 }

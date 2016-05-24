@@ -5,11 +5,11 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
     <link rel="stylesheet" href="css/style.css">
-    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
     <script src="build/js/vendor.min.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
     <script type="text/javascript" src="build/js/app.js"></script>
 
-    <title>Email</title>
+    <title>Alarm Clock</title>
   </head>
   <body>
 <div class="jumbotron">
@@ -25,9 +25,13 @@
                     <span class="glyphicon glyphicon-calendar"></span>
                 </span>
             </div>
-            <button class="btn btn-lg btn-primary" type="submit">Submit</button>
         </div>
+        <button class="btn btn-lg btn-primary" type="submit">Submit</button>
       </form>
+      <div class="btn-group myhidden" role="group" id="group">
+        <button class="btn btn-lg btn-warning" id="snooze">Snooze</button>
+        <button class="btn btn-lg btn-danger" id="cancel">Cancel</button>
+      </div>
       <div id="input">
       </div>
       <div id="timeformat">
@@ -38,11 +42,8 @@
       <div id="wakeup">
       </div>
       <div class="photo">
-        <img class="myhidden" id="pic" src="images/clock.jpg">
+        <img class="myhidden" id="pic" src="images/clock.png" width="80%">
       </div>
-    <div id="sound">
-      <audio id="rooster" src="images/rooster-4.wav" type="audio/wav" preload="auto"></audio>
-    </div>
     </div>
   </body>
 </html>
